@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package reactgrpc;
+
+import "google/api/annotations.proto";
+
+option go_package = "reactgrpc/pb";
+
+service GrpcService {
+
+    rpc GetMessage (GetMessageRequest) returns (GetMessageResponse) {
+        option (google.api.http) = {
+            post: "/api/v1/get-message"
+            body: "*"
+        };
+    }
+}
+
+message GetMessageRequest {
+    string name =1;
+}
+
+message GetMessageResponse {
+    string message = 1;
+}
+
